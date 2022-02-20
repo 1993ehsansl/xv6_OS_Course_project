@@ -1,0 +1,57 @@
+struct stat;
+struct rtcdate;
+struct TimeVariables
+{
+  uint creationTime;             // process creation time
+  uint terminationTime;         // process terminate time
+  int  sleepingTime;              // process sleeping time
+  int  readyTime;              // process ready (RUNNABLE) time
+  int  runningTime;                // process running time
+};
+
+// system calls
+int fork(void);
+int exit(void) __attribute__((noreturn));
+int wait(void);
+int pipe(int*);
+int write(int, const void*, int);
+int read(int, void*, int);
+int close(int);
+int kill(int);
+int exec(char*, char**);
+int open(const char*, int);
+int mknod(const char*, short, short);
+int unlink(const char*);
+int fstat(int fd, struct stat*);
+int link(const char*, const char*);
+int mkdir(const char*);
+int chdir(const char*);
+int dup(int);
+int getpid(void);
+char* sbrk(int);
+int sleep(int);
+int uptime(void);
+int getChildren(int);
+int getCount(int);
+int currentStatus(void);
+int changePolicy(int);
+int waitForChild(struct TimeVariables *t);
+int changePriority(int,int);
+int ticketlockTest();
+int ticketlockinit();
+int rwinit();
+int rwtest(int);
+
+// ulib.c
+int stat(const char*, struct stat*);
+char* strcpy(char*, const char*);
+void *memmove(void*, const void*, int);
+char* strchr(const char*, char c);
+int strcmp(const char*, const char*);
+void printf(int, const char*, ...);
+char* gets(char*, int max);
+uint strlen(const char*);
+void* memset(void*, int, uint);
+void* malloc(uint);
+void free(void*);
+int atoi(const char*);
